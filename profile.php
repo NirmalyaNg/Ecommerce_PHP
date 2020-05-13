@@ -54,7 +54,7 @@ while($row = mysqli_fetch_assoc($exec_query)){
 </head>
 <body>
 
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
     <a href="index.html" class="navbar-brand">ESTORE</a>
     <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">

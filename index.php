@@ -26,7 +26,7 @@ include("includes/connection.php");
 <body>
  
   <!--Navigation Bar-->
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
     <a href="index.html" class="navbar-brand">ESTORE</a>
     <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">

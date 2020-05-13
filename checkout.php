@@ -39,7 +39,7 @@ if(isset($_POST['confirmPay'])){
     $prod_name = $product_names[$i];
     $prod_qty = $product_qty[$i];
     $prod_total = $total_array[$i];
-    $query = "INSERT INTO orders (orderid,cust_name,cust_email,prod_id,product_name,quantity,total_price) VALUES('$orderid','$custname','$cust_email','$prod_id','$prod_name','$prod_qty','$prod_total')";
+    $query = "INSERT INTO orders (orderid,cust_name,cust_email,prod_id,product_name,quantity,bill_time,total_price) VALUES('$orderid','$custname','$cust_email','$prod_id','$prod_name','$prod_qty',now(),'$prod_total')";
     $exec_query = mysqli_query($connection,$query);
     check_query($exec_query);
 
@@ -89,7 +89,7 @@ if(isset($_POST['confirmPay'])){
   </head>
 <body>
 
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
     <a href="index.html" class="navbar-brand">ESTORE</a>
     <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">

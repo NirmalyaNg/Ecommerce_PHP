@@ -58,7 +58,7 @@ if(!isset($_SESSION['admin_details'])){
           <hr>
           <p class="lead"><a href="categories.php">Categories</a></p>
           <hr>
-          <p class="lead"><a href="">Users</a></p>
+          <p class="lead"><a href="products.php?viewAllUsers">Users</a></p>
           <hr>
           <p class="lead"><a href="orders.php">Orders</a></p>
         </div>

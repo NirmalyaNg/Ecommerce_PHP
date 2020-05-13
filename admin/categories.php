@@ -53,7 +53,7 @@ if(isset($_POST['updateCategory'])){
     crossorigin="anonymous">
     <!--Custom Stylesheet-->
   <link rel="stylesheet" href="css/style.css">
-  <title>Category Page Page</title>
+  <title>Category Page</title>
 </head>
 
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -91,7 +91,7 @@ if(isset($_POST['updateCategory'])){
           <hr>
           <p class="lead"><a href=""><b>Categories</b></a></p>
           <hr>
-          <p class="lead"><a href="">Users</a></p>
+          <p class="lead"><a href="products.php?viewAllUsers">Users</a></p>
           <hr>
           <p class="lead"><a href="orders.php">Orders</a></p>
         </div>

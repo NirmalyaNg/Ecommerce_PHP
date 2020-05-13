@@ -17,7 +17,7 @@ if(!isset($_SESSION['admin_details'])){
     crossorigin="anonymous">
     <!--Custom Stylesheet-->
   <link rel="stylesheet" href="css/style.css">
-  <title>Category Page Page</title>
+  <title>Orders Page</title>
 </head>
 
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -57,7 +57,7 @@ if(!isset($_SESSION['admin_details'])){
           <hr>
           <p class="lead"><a href="categories.php">Categories</a></p>
           <hr>
-          <p class="lead"><a href="">Users</a></p>
+          <p class="lead"><a href="products.php?viewAllUsers">Users</a></p>
           <hr>
           <p class="lead"><a href="orders.php"><b>Orders</b></a></p>
         </div>

@@ -17,7 +17,7 @@ if(!isset($_SESSION['admin_details'])){
     crossorigin="anonymous">
     <!--Custom Stylesheet-->
   <link rel="stylesheet" href="css/style.css">
-  <title>Category Page Page</title>
+  <title><?php if(isset($_GET['viewAllUsers'])){ echo "Users Page"; } else { echo "Products Page"; } ?></title>
 </head>
 
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -46,18 +46,18 @@ if(!isset($_SESSION['admin_details'])){
           <!-- <p class="lead"><a href="">Products</a></p> -->
           <div class="dropdown" style="margin-bottom:-10px;">
             <button class=" btn btn-default dropdown-toggle bg-light" style="margin-left:-12px;font-weight:300;font-size:18px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <b>Products</b>
+              <?php if(!isset($_GET['viewAllUsers'])) { echo "<b>Products</b>";  } else { echo "Products"; }  ?>
             </button>
             <div class="dropdown-menu" style="font-size:17px;" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" href="products.php?viewAllProduct">Viwe All Products</a>
-              <a class="dropdown-item" href="#">Add Product</a>
+              <a class="dropdown-item" href="products.php?addProduct">Add Product</a>
             </div>
           </div>
           
           <hr>
           <p class="lead"><a href="categories.php">Categories</a></p>
           <hr>
-          <p class="lead"><a href="">Users</a></p>
+          <p class="lead"><a href="products.php?viewAllUsers"> <?php if(isset($_GET['viewAllUsers'])) { echo "<b>Users</b>"; } else {echo "Users"; } ?></a></p>
           <hr>
           <p class="lead"><a href="orders.php">Orders</a></p>
         </div>
@@ -70,6 +70,8 @@ if(!isset($_SESSION['admin_details'])){
           include("addProduct.php");
         }else if(isset($_GET['editProduct'])){
           include("editProduct.php");
+        }else if(isset($_GET['viewAllUsers'])){
+          include("viewUsers.php");
         }
          ?>
 
