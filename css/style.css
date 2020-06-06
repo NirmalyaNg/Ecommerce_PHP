@@ -20,15 +20,15 @@ body {
 }
 
 .carousel-image-1 {
-	background: url('../images/image1.jpg');
+	background: url('../images/img1.jpg');
 	background-size: cover;
 }
 .carousel-image-2 {
-	background: url('../images/image2.jpg');
+	background: url('../images/img2.jpg');
 	background-size: cover;
 }
 .carousel-image-3 {
-	background: url('../images/image3.jpg');
+	background: url('../images/img3.jpg');
 	background-size: cover;
 }
 

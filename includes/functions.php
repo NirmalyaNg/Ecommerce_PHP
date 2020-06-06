@@ -6,5 +6,3 @@ function check_query($query){
     die("Query failed".mysqli_error($connection));
   }
 }
-
-?>

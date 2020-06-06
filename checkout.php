@@ -47,6 +47,7 @@ if(isset($_POST['confirmPay'])){
     $query = "UPDATE products SET pqty = pqty - '$prod_qty' WHERE pid = '$prod_id'";
     $exec = mysqli_query($connection,$query);
     check_query($exec);
+
     
     
    

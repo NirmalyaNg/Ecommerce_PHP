@@ -16,6 +16,7 @@ if(isset($_POST['checkout'])){
 
 
 
+
 ?>
 
 <!DOCTYPE html>
@@ -71,6 +72,11 @@ if(isset($_POST['checkout'])){
         <li class="nav-item ">
           <a href="logout.php" class="nav-link pl-md-4">LOGOUT</a>
         </li>
+        <li>
+          <a href="#"><i class="fas fa-cart-plus text-white" style="padding-top:10px;padding-left:2px;"></i>
+            <span class="text-white"><?php if(isset($_SESSION['cart'])) { echo count($_SESSION['cart']) ;} else{ echo 0;} ?></span>
+          </a>
+        </li>
 
           <?php
         } ?>
@@ -115,12 +121,30 @@ if(isset($_POST['checkout'])){
           </thead>
           <tbody id="tbody">
           <?php 
+          $email = $_SESSION['user_details']['email'];
           foreach ($_SESSION['cart'] as $key => $value) {
             $prod_id = $value['pid'];
             $pname = $value['pname'];
             $pprice = $value['pprice'];
             $pqty = $value['pqty'];
             $ppic = $value['ppic'];
+            $query = "SELECT * FROM products WHERE pid = '$prod_id'";
+            $exec = mysqli_query($connection,$query);
+            check_query($exec);
+            $row = mysqli_fetch_assoc($exec);
+            $database_qty = $row['pqty'];
+            
+            if($database_qty < $pqty){
+              for($i = 0;$i<count($_SESSION['cart']);$i++){
+                if($_SESSION['cart'][$i]['pid'] == $prod_id){
+                  $_SESSION['cart'][$i]['pqty'] = $database_qty;
+                }
+              }
+
+              $query = "UPDATE cartitems SET pqty = '$database_qty' WHERE pid = '$prod_id' AND user_email = '$email'";
+              $exec = mysqli_query($connection,$query);
+              check_query($exec);
+            }
             ?>
             <tr>
               <td>

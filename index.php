@@ -79,7 +79,7 @@ include("includes/connection.php");
       <div class="carousel-item carousel-image-1 active">
         <div class="container">
           <div class="carousel-caption d-none d-sm-block text-right mb-5">
-            <h1 class="display-3">Heading One</h1>
+            <h1 class="display-3">Heading 1</h1>
             <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. At harum distinctio illo id praesentium quaerat tempora expedita amet aliquid consectetur.</p>
             <a href="#" class="btn btn-danger btn-lg">Sign Up Now</a>
           </div>
