@@ -16,7 +16,7 @@ body {
 
 /*For Carousel*/
 .carousel-item {
-	height: 450px;
+	height: 480px;
 }
 
 .carousel-image-1 {
@@ -82,4 +82,9 @@ body {
 
 .about-img {
 	margin-top: -50px;
+}
+
+#slide-show img {
+	width: 200px;
+	height: auto;
 }

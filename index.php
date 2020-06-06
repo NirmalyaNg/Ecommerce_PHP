@@ -1,5 +1,26 @@
 <?php
 include("includes/connection.php");
+
+if(isset($_POST['newsletter'])){
+  $email = mysqli_real_escape_string($connection,$_POST['email']);
+  $name = mysqli_real_escape_string($connection,$_POST['name']);
+  if(ctype_space($email) || ctype_space($name)){
+    header("Location:index.php?msg=Fields empty&type=danger");
+  }else{
+    $query = "INSERT INTO newsletter (name,email) VALUES('$name','$email')";
+    $exec = mysqli_query($connection,$query);
+    if(!$exec){
+      die("Query Failed".mysqli_error($connection));
+    }
+    else{
+      header("Location:index.php?msg=Registered To Newsletter&type=success");
+    }
+  }
+
+
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,8 +39,19 @@ include("includes/connection.php");
 
     <!--Ekko Lightbox Cdn-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
+
+    <!--Slick Slider CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"  crossorigin="anonymous" />
     <!--Custom Stylesheet-->
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    #slide-show img{
+      width:200px;
+      height:auto;
+    }
+  </style>
   <title>Bootstrap Theme</title>
 </head>
 
@@ -79,9 +111,9 @@ include("includes/connection.php");
       <div class="carousel-item carousel-image-1 active">
         <div class="container">
           <div class="carousel-caption d-none d-sm-block text-right mb-5">
-            <h1 class="display-3">Heading 1</h1>
-            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. At harum distinctio illo id praesentium quaerat tempora expedita amet aliquid consectetur.</p>
-            <a href="#" class="btn btn-danger btn-lg">Sign Up Now</a>
+            <h1 class="display-3">Ready To Shop ?</h1>
+            <p class="lead">Login and view all our top quality products and start shopping ...</p>
+            <a href="login.php" class="btn btn-success btn-lg">Login</a>
           </div>
         </div>
       </div>
@@ -90,20 +122,21 @@ include("includes/connection.php");
       <div class="carousel-item carousel-image-2">
         <div class="container">
           <div class="carousel-caption d-none d-sm-block mb-5">
-            <h1 class="display-3">Heading Two</h1>
-            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. At harum distinctio illo id praesentium quaerat tempora expedita amet aliquid consectetur.</p>
-            <a href="#" class="btn btn-primary btn-lg">Learn more</a>
+            <h1 class="display-3">Don't have an account ?</h1>
+            <p class="lead">If you dont have an account then hurry up and create one to start shopping..</p>
+            <a href="signup.php" class="btn btn-primary btn-lg">Signup</a>
           </div>
         </div>
       </div>
 
       <!--Third Carousel Item-->
-      <div class="carousel-item carousel-image-3">
+      <div class="carousel-item carousel-image-3" style="background:url('images/img3.jpg');	background-position: 50% 20%;
+">
         <div class="container">
           <div class="carousel-caption d-none d-sm-block text-right mb-5">
-            <h1 class="display-3">Heading Three</h1>
-            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. At harum distinctio illo id praesentium quaerat tempora expedita amet aliquid consectetur.</p>
-            <a href="#" class="btn btn-success btn-lg">Login and Shop</a>
+            <h1 class="display-3">Facing Issues ?</h1>
+            <p class="lead">Contact us by simply clicking on the contact us button and we will reach out to you as soon as possible.</p>
+            <a href="contact.php" class="btn btn-warning btn-lg">Contact Us</a>
           </div>
         </div>
       </div>
@@ -123,19 +156,19 @@ include("includes/connection.php");
   <div class="container">
     <div class="row">
       <div class="col-md-4 mb-2 text-center">
-        <i class="fas fa-cog fa-3x mb-2"></i>
-        <h3>Turning Gears</h3>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, in.</p>
+        <i class="fas fa-cart-plus fa-3x mb-2 text-success"></i>
+        <h3>Top Quality Products</h3>
+        <p>We provide the best quality products available with utmost care.</p>
       </div>
       <div class="col-md-4 mb-2 text-center">
-        <i class="fas fa-cloud fa-3x mb-2"></i>
-        <h3>Sending Data</h3>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, in.</p>
+        <i class="fas fa-truck fa-3x mb-2 text-success"></i>
+        <h3>Ligtning Fast Delivery</h3>
+        <p>We provide one of the fastest and safest deliveries possible.</p>
       </div>
       <div class="col-md-4 mb-2 text-center">
-        <i class="fas fa-cart-plus fa-3x mb-2"></i>
-        <h3>Shopping More</h3>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores, in.</p>
+        <i class="fas fa-exchange-alt fa-3x mb-2 text-success"></i>
+        <h3>Easy Exchange</h3>
+        <p>Our exchange procedure is the easiest and most reliable.</p>
       </div>
     </div>
   </div>
@@ -149,7 +182,8 @@ include("includes/connection.php");
       <div class="col">
         <div class="container">
           <h1 class="pt-5">Are You Ready To Shop With Us ?</h1>
-          <p class="d-none d-md-block">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, sint impedit fuga nostrum atque modi quaerat eligendi doloribus quis at.</p>
+          <p class="d-none d-md-block">Have an Account ? Want to start shopping ? </p>
+          <a href="shop.php" class="btn btn-success mb-2">Start Shopping</a>
         </div>
       </div>
     </div>
@@ -162,8 +196,8 @@ include("includes/connection.php");
     <div class="row">
       <div class="col-md-6 align-self-center">
         <h3>About Our Site</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, possimus. Quis eos omnis iure rem sint! Nobis ipsam veniam tempora!</p>
-        <a href="#" class="btn btn-outline-danger btn-lg">Learn More</a>
+        <p>Want To know more about what we do and how we operate ? </p>
+        <a href="about.php" class="btn btn-outline-danger btn-lg">Learn More</a>
       </div>
       <div class="col-md-6">
         <img src="images/laptop.png" alt="" class="img-fluid">
@@ -203,46 +237,37 @@ include("includes/connection.php");
 </div>
 
 <!--Image Galerry using lightbox-->
-<section id="gallery" class="py-5">
+<section id="slide-show" class="py-5 d-none d-lg-block ml-lg-5">
   <div class="container">
-    <h1 class="text-center">Photo Gallery</h1>
-    <p class="text-center">Check out our Product Images</p>
-    <!--1st Row-->
-    <div class="row mb-4">
-      <div class="col-md-4 mb-2">
-        <a href="prod_pics/mobile1.jpg" data-toggle="lightbox" data-gallery="img-gallery" data-height="560" data-width="560">
-          <img src="prod_pics/mobile1.jpg" alt="" class="img-fluid">
-        </a>
+    <div class="slider"> 
+      <div class="items ml-5">
+        <img src="prod_pics/mobile01.jpeg" alt="" style="width:100px;height:auto">
       </div>
-      <div class="col-md-4 mb-2">
-        <a href="prod_pics/mobile2.jpg" data-toggle="lightbox" data-gallery="img-gallery" data-height="561" data-width="561">
-          <img src="prod_pics/mobile2.jpg" alt="" class="img-fluid">
-        </a>
+      <div class="items ml-md-3 ml-xl-4">
+        <img src="prod_pics/mobile02.jpeg" alt="" style="width:100px;height:auto">
       </div>
-      <div class="col-md-4 mb-2">
-        <a href="prod_pics/mobile3.jpg" data-toggle="lightbox" data-gallery="img-gallery" data-height="562" data-width="562">
-          <img src="prod_pics/mobile3.jpg" alt="" class="img-fluid">
-        </a>
+      <div class="items">
+        <img src="prod_pics/mobile03.jpeg" alt="" style="width:100px;height:auto">
+      </div>
+      <div class="items">
+        <img src="prod_pics/mobile04.jpeg" alt="" style="width:100px;height:auto">
+      </div>
+      <div class="items">
+        <img src="prod_pics/mobile05.jpeg" alt="" style="width:100px;height:auto">
+      </div>
+      <div class="items">
+        <img src="prod_pics/mobile06.jpeg" alt="" style="width:100px;height:auto">
+      </div>
+      <div class="items pt-5 mr-3" >
+        <img src="prod_pics/laptop01.jpeg" alt="" style="width:200px;height:auto"  >
+      </div>
+      <div class="items pt-5 mr-3">
+        <img src="prod_pics/laptop02.jpeg" alt="" style="width:200px;height:auto" >
+      </div>
+      <div class="items pt-5 mr-4">
+        <img src="prod_pics/laptop03.jpeg" alt="" style="width:200px;height:auto" >
       </div>
     </div>
-    <!--2nd Row-->
-    <!-- <div class="row mb-4">
-      <div class="col-md-4 mb-2">
-        <a href="prod_pics/laptop1.jpg" data-toggle="lightbox" data-gallery="img-gallery" data-height="563" data-width="563">
-          <img src="prod_pics/laptop1.jpg" alt="" class="img-fluid">
-        </a>
-      </div>
-      <div class="col-md-4 mb-2">
-        <a href="prod_pics/laptop3.jpg" data-toggle="lightbox" data-gallery="img-gallery" data-height="564" data-width="564">
-          <img src="prod_pics/laptop3.jpg" alt="" class="img-fluid">
-        </a>
-      </div>
-      <div class="col-md-4 mb-2">
-        <a href="prod_pics/laptop4.jpg" data-toggle="lightbox" data-gallery="img-gallery" data-height="565" data-width="565">
-          <img src="prod_pics/laptop4.jpg" alt="" class="img-fluid">
-        </a>
-      </div>
-    </div> -->
   </div>
 </section>
 
@@ -252,12 +277,20 @@ include("includes/connection.php");
     <div class="row">
       <div class="col">
         <h1>Sign Up For Our NewsLetter</h1>
-        <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae placeat fuga illum voluptates aliquam minima laudantium rerum accusantium sapiente quos?</p>
-        <form  class="form-inline justify-content-center">
-          <input type="text" class="mb-2 mr-2 form-control" placeholder="Enter Name">
-          <input type="email" class="mb-2 mr-2 form-control" placeholder="Enter Email">
-          <input type="submit" class="btn btn-primary mb-2">
+        <p class="mb-4">Signup to our newsletter so that we can keep you updated about our recent products releases and many more offers.</p>
+        <form  class="form-inline justify-content-center" method="post">
+          <input type="text" class="mb-2 mr-2 form-control" placeholder="Enter Name" required name="name">
+          <input type="email" class="mb-2 mr-2 form-control" placeholder="Enter Email" required name="email">
+          <input type="submit" class="btn btn-primary mb-2" name="newsletter" value="Subscribe">
         </form>
+        <?php 
+          if(isset($_GET['msg'])){
+            $msg = $_GET['msg'];
+            $type = $_GET['type'];
+
+            echo "<div class='alert alert-{$type} mx-auto mt-3' id='alert' style='width:350px;'>{$msg}</div>";
+          }
+        ?>
       </div>
     </div>
   </div>
@@ -335,6 +368,29 @@ include("includes/connection.php");
     });
 
   </script>
+  <!--Slick slider js-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+
+  <script>
+  
+
+    $(".slider").slick({
+      slidesToShow:4,
+      slidesToScroll:1,
+      dots:true,
+      autoplay:true,
+      speed:500,
+    });
+
+
+
+  </script>
+
+
+
+
+
+
 </body>
 
 </html>
