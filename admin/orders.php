@@ -67,17 +67,18 @@ if(!isset($_SESSION['admin_details'])){
         <div class="row">
           <div class="col-12">
           <div class="table-responsive">
-            <table class="table table-bordered text-center">
-              <thead>
+            <table class="table table-striped text-center">
+              <thead class="bg-primary text-white">
                 <tr>
-                  <th>ORDERID</th>
-                  <th>CUSTOMER NAME</th>
-                  <th>PRODUCT ID</th>
-                  <th>PRODUCT NAME</th>
-                  <th>PRODUCT QTY</th>
-                  <th>BILL TIME</th>
-                  <th>TOTAL PRICE</th>
-                  <th>ORDER STATUS</th>
+                  <th>Id Of Order</th>
+                  <th>Customer Name</th>
+                  <th>Product Id</th>
+                  <th>Product Name</th>
+                  <th>Product Qty</th>
+                  <th>Time Of Bill</th>
+                  <th>Total Price</th>
+                  <th>Order Status</th>
+                  <th>Change Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -85,6 +86,7 @@ if(!isset($_SESSION['admin_details'])){
                 $query = "SELECT * FROM orders";
                 $exec = mysqli_query($connection,$query);
                 while($row = mysqli_fetch_assoc($exec)){
+                  $orderId = $row['orderid'];
                   ?>
                   <tr>
                     <td><?php echo $row['orderid']; ?></td>
@@ -95,6 +97,7 @@ if(!isset($_SESSION['admin_details'])){
                     <td><?php echo $row['bill_time']; ?></td>
                     <td><?php echo $row['total_price']; ?></td>
                     <td><?php echo $row['Order_status']; ?></td>
+                    <td><a href="changeOrderStatus.php?orderid=<?php echo $orderId; ?>" style="text-decoration:none;"><i class="fas fa-wrench"></i>Change</a></td>
                   </tr>
                   <?php
                 }

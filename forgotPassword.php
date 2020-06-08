@@ -1,32 +1,34 @@
 <?php
-include("includes/connection.php");
-if(isset($_POST['login'])){
-  $email = mysqli_real_escape_string($connection,$_POST['email']);
-  $pass = mysqli_real_escape_string($connection,$_POST['pass']);
+include("includes/functions.php");
+ob_start();
+if(isset($_POST['otp'])){
+  $email = $_POST['email'];
+  //Check if the email is registered or not
 
-  if(trim($email) === "" || trim($pass) === ""){
-    header("Location:login.php?msg=Fields cannot be empty&alert=warning");
-  }
-  else{
-    $query = "SELECT * FROM users WHERE email = '$email'";
-    $get_user_details = mysqli_query($connection,$query);
-
-    if(mysqli_num_rows($get_user_details) === 1){
-      $row = mysqli_fetch_assoc($get_user_details);
-      if($row['password'] === $pass){
-
-        $_SESSION['user_details'] = $row; 
-        header("Location:profile.php");
-      }
-      else{
-        header("Location:login.php?msg=Wrong Credentials&alert=danger");
-      }
+  $query = "SELECT * FROM users WHERE email = '$email'";
+  $exec = mysqli_query($connection,$query);
+  check_query($exec);
+  $count = mysqli_num_rows($exec);
+  if($count == 0){
+    header("Location:forgotPassword.php?error=Email not registered.");
+  }else {
+  $to = $email;
+  $subject = "Password Change Verfication OTP";
+  
+  $code = rand(100000,999999);
+  $_SESSION['passwordChange']['email'] = $email;
+  $_SESSION['passwordChange']['code'] = $code; 
+  $body = $code;
+         
+  $headers = "From:nirmalyaganguly1999@gmail.com";
+           
+  if( mail ($to,$subject,$body,$headers)) {
+    header("Location:changePassByEmail.php");
+    }else {
+    header("forgotPassword.php?error=Email not sent.");
     }
-    else{
-      header("Location:login.php?msg=User not registered.&alert=warning");
-    }
   }
-} 
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,7 +74,7 @@ if(isset($_POST['login'])){
         <li class="nav-item ">
           <a href="#" class="nav-link pl-md-4">BLOG</a>
         </li> -->
-        <li class="nav-item active">
+        <li class="nav-item">
           <a href="login.php" class="nav-link pl-md-4">LOGIN</a>
         </li>
         <li class="nav-item">
@@ -88,47 +90,25 @@ if(isset($_POST['login'])){
 
 
 <section id="login-form" class="mt-4 pt-4">
-<h1 class="display-4 text-center mb-4 bg-danger py-2"><span class="text-white"><i class="fas fa-user"></i> LOGIN HERE</span></h1>
+<h1 class="display-4 text-center mb-4 bg-warning py-3"><span class="text-white"><i class="fas fa-key"></i> FORGOT PASSWORD</span></h1>
   <div class="container">
  
     <div class="row mt-5">
-      <div class="col-lg-7 d-none d-lg-block">
-        <img src="images/loginPage.jpeg" class="img-fluid" alt="">
-      </div>
-      <div class="col-md-8 offset-md-2 col-lg-5 offset-lg-0 pt-5">
-      
-      <div class="card card-body shadow">
-      <?php if(isset($_GET['msg']))
-      { 
-        $msg = $_GET['msg'];
-        $alert = $_GET['alert'];
-        echo "<div class='alert alert-{$alert}'>{$msg}</div>";  
-      } ?>
-        <form method="POST" class="pt-3">
-          <!-- <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email"  required class="form-control" name="email" autocomplete="off">
-          </div> -->
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text bg-danger text-white"><i class="fas fa-user"></i></span>
+      <div class="col-md-6 mx-auto">
+        <div class="card card-body shadow">
+          <form method="POST">
+            <div class="form-group">
+              <label for="Email">Enter Registered Email</label>
+              <input type="email" name="email" class="form-control" required>
             </div>
-            <input type="email" class="form-control" placeholder="abc@gmail.com" id="email" name="email" autocomplete="off">
-          </div>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text bg-danger text-white" ><i class="fas fa-key"></i></span>
-            </div>
-            <input type="password" class="form-control" placeholder="Enter your password" id="password" name="pass" autocomplete="off" required>
-          </div>
-          <h6 class="text-muted text-right"><a href="forgotPassword.php" style="text-decoration:none;"><i class="fas fa-wrench"></i> Forgot Password</a></h6>
-          
-          <!-- <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="pass" required class="form-control" id="password" autocomplete="off">
-          </div> -->
-          <input type="submit" class="btn btn-danger btn-block" name="login" value="Login">
-        </form>
+            <input type="submit" class="btn btn-success btn-block" value="Send OTP" name="otp">
+            <?php  
+            if(isset($_GET['error'])){
+              $msg = $_GET['error'];
+              echo "<div class='alert alert-danger mt-2'>{$msg}</div>";
+            }
+            ?>
+          </form>
         </div>
       </div>
     </div>

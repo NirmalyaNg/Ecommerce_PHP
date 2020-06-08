@@ -6,7 +6,8 @@ if(!isset($_SESSION['user_details']))
 
 
 //Coming from bill.php page
-if(isset($_POST['pay'])){
+if(isset($_POST['payNow'])){
+  $productId = $_POST['id'];
   $cust_name = $_POST['fullname'];
   $cust_mail = $_POST['email'];
   $address = $_POST['address'];
@@ -18,50 +19,47 @@ if(isset($_POST['pay'])){
 
 if(isset($_POST['confirmPay'])){
 
-  $product_ids_array = array_column($_SESSION['cart'],'pid');
-  $product_names = array_column($_SESSION['cart'],'pname');
-  $product_qty = array_column($_SESSION['cart'],'pqty');
-  $cust_email = $_POST['cust_email'];
+  
 
-  $total_array = [];
-  foreach ($_SESSION['cart'] as $key => $value) {
-    $total = 0;
-    $total += $value['pqty'] * $value['pprice'];
-    array_push($total_array,$total);
-
-  }
-
-  for($i = 0;$i<count($product_ids_array);$i++){
+    $Id = $_POST['productId'];
+    $query = "SELECT * FROM products WHERE pid = '$Id'";
+    $get_product_details = mysqli_query($connection,$query);
+    check_query($get_product_details);
+    $rowDetails = mysqli_fetch_assoc($get_product_details);
+    $prod_name = $rowDetails['pname'];
+    $prod_qty = 1;
+    $prod_total = $rowDetails['pprice'] * 1;
     $orderid = "ORD".rand(1,999999999);
     $custname = $_POST['cust_name'];
-    
-    $prod_id = $product_ids_array[$i];
-    $prod_name = $product_names[$i];
-    $prod_qty = $product_qty[$i];
-    $prod_total = $total_array[$i];
-    $query = "INSERT INTO orders (orderid,cust_name,cust_email,prod_id,product_name,quantity,bill_time,total_price,Order_status) VALUES('$orderid','$custname','$cust_email','$prod_id','$prod_name','$prod_qty',now(),'$prod_total','Order Placed')";
+    $cust_email = $_SESSION['user_details']['email'];
+
+    $query = "INSERT INTO orders (orderid,cust_name,cust_email,prod_id,product_name,quantity,bill_time,total_price,Order_status) VALUES('$orderid','$custname','$cust_email','$Id','$prod_name','$prod_qty',now(),'$prod_total','Order Placed')";
     $exec_query = mysqli_query($connection,$query);
     check_query($exec_query);
 
     //UPDATE the quantity in the products table
-    $query = "UPDATE products SET pqty = pqty - '$prod_qty' WHERE pid = '$prod_id'";
+    $query = "UPDATE products SET pqty = pqty - '$prod_qty' WHERE pid = '$Id'";
     $exec = mysqli_query($connection,$query);
     check_query($exec);
 
     
     
    
-  }
+  
 
   //Delete the cart items from cartitems array after successfull purchase
   $email = $_SESSION['user_details']['email'];
-  for($i = 0 ; $i < count($product_ids_array);$i++){
-    $pid = $product_ids_array[$i];
-    $query = "DELETE FROM cartitems WHERE pid = '$pid' AND user_email = '$email'";
-    $exec = mysqli_query($connection,$query);
-    check_query($exec);
+  $query = "DELETE FROM cartitems WHERE pid = '$Id' AND user_email = '$email'";
+  $exec = mysqli_query($connection,$query);
+  check_query($exec);
+  
+  for($i = 0; $i < count($_SESSION['cart']);$i++){
+    if($_SESSION['cart'][$i]['pid'] == $Id){
+      unset($_SESSION['cart'][$i]);
+      $_SESSION['cart'] = array_values($_SESSION['cart']);
+    break;
+    }
   }
-  unset($_SESSION['cart']);
   header("Location:myorders.php?msg=PAYMENT SUCCESSFULL");
 
 }
@@ -139,6 +137,8 @@ if(isset($_POST['confirmPay'])){
       </div>
       <div class="card-body">
           <form method="post">
+          
+          <input type="hidden" value="<?php echo $productId; ?>" name="productId">
             <div class="form-group">
               <label for="">CUSTOMER NAME</label>
               <input type="text" class='form-control bg-light' disabled name="cust_name" id="cust_name" value="<?php echo $cust_name; ?>">
@@ -179,19 +179,6 @@ if(isset($_POST['confirmPay'])){
   </div>
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

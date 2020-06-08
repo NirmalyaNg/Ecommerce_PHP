@@ -71,7 +71,7 @@ if(!isset($_SESSION['user_details']))
   <div class="container">
     <div class="row">
         <div class="col-12 col-md-12 col-sm-12 col-lg-6 bg-light px-5 py-4">
-          <form action="checkout.php" method="post" autocomplete="off">
+          <form action="payNowCheckout.php" method="post" autocomplete="off">
             <p class="lead">Contact Information</p>
             <input type="email" name="email" value="<?php echo $_SESSION['user_details']['email']; ?>" placeholder="Enter your email" class="form-control">
             <hr>
@@ -110,20 +110,30 @@ if(!isset($_SESSION['user_details']))
             <hr>
             <div class="form-group">
               <p class="lead">GRAND TOTAL($)</p>
-              <?php 
+              <?php /*
               $total = 0;
               foreach ($_SESSION['cart'] as $key => $value) {
                 $prod_total = $value['pprice'] * $value['pqty'];
                 $total = $total + $prod_total;
+                
+              }
+              */
+              if(isset($_GET['buyItNowId'])){
+                $ID = $_GET['buyItNowId'];
+                $query = "SELECT * FROM products WHERE pid = '$ID'";
+                $getProduct = mysqli_query($connection,$query);
+                $productDetails = mysqli_fetch_assoc($getProduct);
+                $priceOfProduct = $productDetails['pprice'];
               }
               ?>
 
-              <input type="text" class="form-control" value="<?php echo $total; ?>" disabled style="border:none;" name="total">
-              <input type="hidden" class="form-control" value="<?php echo $total; ?>"  style="border:none;" name="totalamount">
+              <input type="text" class="form-control" value="<?php echo $priceOfProduct; ?>" disabled style="border:none;" name="total">
+              <input type="hidden" class="form-control" value="<?php echo $priceOfProduct; ?>"  style="border:none;" name="totalamount">
 
 
             </div>
-            <input type="submit" name="pay" class="btn btn-success mt-2 btn-block " value="PAY NOW">
+            <input type="hidden" name="id" value="<?php echo $ID; ?>">
+            <input type="submit" name="payNow" class="btn btn-success mt-2 btn-block " value="PAY NOW">
 
           </form>
           <a href="cart.php" class="btn btn-outline-success mt-1"><i class="fas fa-arrow-left"></i> BACK TO CART</a>
@@ -142,19 +152,19 @@ if(!isset($_SESSION['user_details']))
               </thead>
               <tbody id="main">
                 <?php
-                for($i = 0;$i < count($_SESSION['cart']); $i++){
-                  $pname = $_SESSION['cart'][$i]['pname'];
-                  $pprice = $_SESSION['cart'][$i]['pprice'];
-                  $pqty = $_SESSION['cart'][$i]['pqty'];
-                  $ptotal =  $_SESSION['cart'][$i]['pprice'] *  $_SESSION['cart'][$i]['pqty'];
-                  $ppic = $_SESSION['cart'][$i]['ppic'];
+                
+                  $pname = $productDetails['pname'];
+                  $pprice = $productDetails['pprice'];
+                  $pqty = 1;
+                  $ptotal =  $pprice * 1;
+                  $ppic = $productDetails['pimage'];
                   echo"<tr>";
                   echo "<td class='text-center'><p id='pname'>{$pname}</p><img src='prod_pics/{$ppic}' class='img-fluid' style='width:100px;'></td>";
                   echo "<td>{$pprice}</td>";
                   echo "<td>{$pqty}</td>";
                   echo "<td>{$ptotal}</td>";
                   echo"</tr>";
-                }
+                
                 
                 ?>
                

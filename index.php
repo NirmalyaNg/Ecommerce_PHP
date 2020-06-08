@@ -113,7 +113,13 @@ if(isset($_POST['newsletter'])){
           <div class="carousel-caption d-none d-sm-block text-right mb-5">
             <h1 class="display-3">Ready To Shop ?</h1>
             <p class="lead">Login and view all our top quality products and start shopping ...</p>
-            <a href="login.php" class="btn btn-success btn-lg">Login</a>
+            <?php 
+              if(isset($_SESSION['user_details'])){
+                echo "<a href='shop.php' class='btn btn-success btn-lg'>SHOP NOW</a>";
+              }else{
+                echo "<a href='login.php' class='btn btn-success btn-lg'>LOGIN</a>";
+              }
+            ?>
           </div>
         </div>
       </div>

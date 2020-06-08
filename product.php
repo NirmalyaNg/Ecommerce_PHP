@@ -147,7 +147,7 @@ if(isset($_POST['addtocart'])){ // I have clicked on add to cart button
 <section class="mt-5 py-3">
   <div class="container mt-5">
     <div class="row">
-      <div class="col-12 col-sm-12 col-md-3 t p-lg-5 py-sm-3">
+      <div class="col-12 col-sm-12 col-md-3 t p-lg-5 py-sm-3 bg-light" >
         <div class="category-box">
           <?php  
             $query = "SELECT * FROM category";
@@ -172,7 +172,7 @@ if(isset($_POST['addtocart'])){ // I have clicked on add to cart button
       <div class="col-12 col-sm-12 col-md-9">
        <div class="row">
           <div class="col-sm-12 col-lg-6 col-md-8 text-center">
-            <img src="prod_pics/<?php echo $row['pimage']; ?>" alt=""  style="width:400px;height:400px;">
+            <img src="prod_pics/<?php echo $row['pimage']; ?>" alt=""  style="width:400px;">
           </div>
           <div class="col-sm-12 col-lg-6 col-md-4 py-3 text-center">
             <h1 class="display-4 mt-2"><?php echo $row['pname']; ?></h1>
@@ -188,7 +188,7 @@ if(isset($_POST['addtocart'])){ // I have clicked on add to cart button
              <!-- <input type='submit' class='btn btn-danger btn-lg' value='ADD TO CART' name='addtocart'> -->
              <input type='submit' class='btn btn-danger btn-lg' value='ADD TO CART' name='addtocart' id="addtocart">
              
-              <p class='mt-2' id="buyitnow"><a href='#' class='btn btn-outline-danger btn-lg'>BUY IT NOW</a></p>
+              <p class='mt-2' id="buyitnow"><a href='buyItNow.php?buyItNowId=<?php echo $pid; ?>' class='btn btn-outline-danger btn-lg'>BUY IT NOW</a></p>
             </form>
 
 

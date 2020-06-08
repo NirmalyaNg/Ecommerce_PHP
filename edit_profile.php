@@ -156,29 +156,40 @@ if ($uploadOk == 0) {
   </div>
 </nav>
 
-<section id="edit_profile" class="mt-3 py-5">
+<section id="edit_profile" class="mt-2 py-4">
+<h1 class="display-4 text-center bg-warning py-4 text-white"><i class="fas fa-user-circle"></i> EDIT PROFILE</h1>
+
   <div class="container">
     <div class="row">
-      <div class="col-12  col-md-4 py-5">
-        <div class="card text-center" style="border:none;">
-          <img src="images/<?php echo $_SESSION['user_details']['ppic']; ?>" alt="" class="img-fluid card-img-top" style="width:180px;height:150px;margin:auto;">
+      <div class="col-md-5 py-5">
+        <div class="card text-center">
+          <div class="card-header">
+            <h4><i class="fas fa-image"></i> PROFILE PICTURE</h4>
+          </div>
+          
           <div class="card-body">
-
+          <img src="images/<?php echo $_SESSION['user_details']['ppic']; ?>" alt="" class="img-fluid" style="width:250px;">
           <!-- Image upload form -->
           <form action="" enctype="multipart/form-data" method="post">
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label>Select Image</label>
               <input type="file" name="ppic" class="form-control">
             </div>
-            <input type="submit" name="upload" class="btn btn-danger btn-sm" value="Upload">
+             -->
+            <div class="input-group mb-3 mt-3">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile02" name="ppic" class="form-control">
+                <label class="custom-file-label" for="inputGroupFile02">Select Picture</label>
+              </div>
+            </div>
+            <input type="submit" name="upload" class="btn btn-block btn-warning" value="Upload">
           </form>
 
 
           </div>
         </div>
       </div>
-      <div class=" col-12 col-md-6">
-        <h1 class="display-4 text-center">EDIT PROFILE</h1>
+      <div class=" col-12 col-md-7 py-5">
         <?php 
           if(isset($_GET['msg'])){
             $msg = $_GET['msg'];

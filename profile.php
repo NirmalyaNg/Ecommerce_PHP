@@ -101,23 +101,35 @@ while($row = mysqli_fetch_assoc($exec_query)){
 </nav>
 
 
-<section id="profile" class="mt-5 py-5">
-  <div class="container">
+<section id="profile" class="py-5">
+<h1 class="display-4 text-center bg-primary py-4 text-white"><i class="fas fa-user-circle"></i> PROFILE</h1>
+  <div class="container mt-2">
     <div class="row">
-      <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3 text-center ">
-        <h3 class="display-4">PROFILE</h3>
-        <hr>
-        <img src="images/<?php echo $_SESSION['user_details']['ppic']; ?>" alt="" class="img-fluid" style="width:150px;"> 
+      <div class="col-md-4 text-center">
+        <div class="card">
+          <div class="card-header">
+            <h4><i class="fas fa-image"></i> PROFILE PICTURE</h4>
+          </div>
+          <div class="card-body">
+            <img src="images/<?php echo $_SESSION['user_details']['ppic']; ?>" alt="" class="img-fluid" style="width:250px">
+          </div>
+        </div>
+        <!-- <img src="images/<?php echo $_SESSION['user_details']['ppic']; ?>" alt="" class="img-fluid" style="width:150px;">  -->
       </div>
-    </div>
-    <div class="row mt-2">
-      <div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4 ">
-        <p ><b>Full Name</b></p>
-        <p class="lead border-bottom"><b><?php echo $_SESSION['user_details']['name']; ?></b></p>
-        <p ><b>Email</b></p>
-        <p class="lead border-bottom mb-3"><b><?php echo $_SESSION['user_details']['email']; ?></b></p>
-        <a href="edit_profile.php" class="btn btn-outline-danger btn-sm">Edit Profile</a>
+
+
+      <div class="col-md-8 py-2">
+        <p class="lead"><b>FULL NAME</b></p>
+        <p style="border-bottom:1px solid #00a8ff;" class="pb-2"><?php echo $_SESSION['user_details']['name']; ?></p>
+        <p class="lead"><b>EMAIL</b></p>
+        <p class="mb-3 pb-2" style="border-bottom:1px solid #00a8ff;" ><?php echo $_SESSION['user_details']['email']; ?></p>
+        <p class="lead"><b>ADDRESS</b></p>
+        <p style="border-bottom:1px solid #00a8ff;" class="pb-2"><?php echo $_SESSION['user_details']['address']; ?></p>
+        <p class="lead"><b>MOBILE NUMBER</b></p>
+        <p style="border-bottom:1px solid #00a8ff;" class="pb-2"><?php echo $_SESSION['user_details']['phone']; ?></p>
+        <a href="edit_profile.php" class="btn btn-outline-primary btn-sm">Edit Profile</a>
         <a href="shop.php" class="btn btn-success btn-sm"> <i class="fas fa-cart-plus"></i> Start Shopping</a>
+        <a href="myorders.php" class="btn btn-primary btn-sm ml-auto"><i class="fas fa-order"></i> VIEW YOUR ORDERS</a>
         <?php 
         if(isset($_SESSION['cart'])){
         if(count($_SESSION['cart']) >=1 ){

@@ -78,34 +78,81 @@ if(!isset($_SESSION['admin_details'])){
 
         ?>
       <div class="col-lg-9 col-md-12  mt-4 mt-lg-0 mt-md-0 mt-sm-0">
-        <div class="row">
-          <div class="col-lg-4 col-md-12 col-12">
-            <div class="card p-5 mb-4 bg-warning text-center"  style="height:260px;">
-              <i class="fas fa-list-alt fa-3x"><span style="font-size:60px;" class="ml-2"><?php echo $count_orders; ?></span></i>
+        <div class="row mb-3">
+          <div class="col-lg-4">
+            <div class="card text-center bg-primary text-white mb-3">
               <div class="card-body">
-                 <p class="lead" style='font-size:25px;'>ORDERS</p>
+                <h3>Users</h3>
+                <h4 class="display-4">
+                  <i class="fas fa-users"></i> <span><?php echo $count_users; ?></span>
+                </h4>
+                
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-12  col-12">
-            <div class="card p-5 mb-4 bg-success text-center" style="height:260px;">
-              <i class="fas fa-list-alt fa-3x"><span style="font-size:60px;" class="ml-2"><?php echo $count_users; ?></span></i>
+          <div class="col-lg-4">
+            <div class="card text-center bg-warning text-white mb-3">
               <div class="card-body">
-                 <p class="lead" style='font-size:25px;'>USERS</p>
+                <h3>Orders</h3>
+                <h4 class="display-4">
+                  <i class="fas fa-cart-plus"></i> <span><?php echo $count_orders; ?></span>
+                </h4>
+                
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-12  col-12">
-            <div class="card p-5 mb-4 bg-primary text-center" style="height:260px;">
-              <i class="fas fa-list-alt fa-3x"><span style="font-size:60px;" class="ml-2"><?php echo $count_categories; ?></span></i>
+          <div class="col-lg-4">
+            <div class="card text-center bg-success text-white mb-3">
               <div class="card-body">
-                 <p class="lead" style='font-size:25px;'>CATEGORIES</p>
+                <h3>Categories</h3>
+                <h4 class="display-4">
+                  <i class="fas fa-list"></i> <span><?php echo $count_categories; ?></span>
+                </h4>
+                
               </div>
             </div>
           </div>
         </div>
+        <?php include('includes/charts.php') ?>
       </div>
-    </div>
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </div>
 
 </section>

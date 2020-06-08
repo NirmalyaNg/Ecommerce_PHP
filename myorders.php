@@ -72,23 +72,23 @@ if(!isset($_SESSION['user_details']))
 <section id="myorders" class='my-5 py-5'>
   <div class="container">
     <div class="row">
-        <div class="col-lg-10 col-md-8 col-12 m-auto">
+        <div class="col-lg-10 mx-auto">
         <?php if(isset($_GET['msg'])){
           $msg = $_GET['msg'];
           echo "<div class='alert alert-success' id='message'>{$msg}</div>";
         }   
         ?>
-          <table class="table table-bordered text-center">
-            <thead>
+          <table class="table text-center table-striped">
+            <thead class="bg-success text-white">
               <tr>
                 <th>ORDER ID</th>
-                <th>CUST. NAME</th>
-                <th>CUST. EMAIL</th>
+                <th>NAME</th>
+                <th>EMAIL</th>
                 <th>PRODUCT</th>
                 <th>QUANTITY</th>
                 <th>TOTAL</th>
                 <th>STATUS</th>
-                <th>Cancel Order</th>
+                <th>Cancel</th>
               </tr>
             </thead>
             <tbody>
@@ -108,18 +108,15 @@ if(!isset($_SESSION['user_details']))
                       <td><?php echo $row['quantity']; ?></td>
                       <td><?php echo $row['total_price']; ?></td>
                       <td><?php echo $row['Order_status']; ?></td>
-                      <td><a href="cancelOrder.php?id=<?php echo $id; ?>"><i class="fas fa-trash text-danger"></i></a></td>
+                      <td><a href="cancelOrder.php?id=<?php echo $id; ?>" class="btn btn-danger btn-sm text-white"><i class="fas fa-trash"></i> CANCEL</a></td>
                     </tr>
                   <?php
                 }
               ?>
             </tbody>
           </table>
-          <?php  
-            if(isset($_SESSION['cart'])){
-              print_r($_SESSION['cart']);
-            }
-          ?>
+          <a href="shop.php" class="btn btn-outline-primary mt-2"><i class="fas fa-arrow-left"></i> SHOP MORE</a>
+          <a href="cart.php" class="btn btn-success mt-2"><i class="fas fa-cart-plus"></i> MY CART</a>
         </div>
     </div>
   </div>

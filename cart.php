@@ -86,11 +86,11 @@ if(isset($_POST['checkout'])){
 </nav>
 
 
-<section class=" py-3">
-<h2 class="display-4 text-center mt-5 ">My Cart <i class="fas fa-shopping-cart text-success"></i></h2>
+<section class=" py-1">
+<h2 class="display-4 text-center mt-5 bg-success text-white py-2">My Cart <i class="fas fa-shopping-cart"></i></h2>
   <div class="container mt-2">
     <div class="row">
-      <div class="col-12 col-sm-12 col-md-3 p-lg-5 py-sm-3">
+      <div class="col-12 col-sm-12 col-md-3 p-lg-5 py-sm-3 bg-light">
 
         <div class="category-box">
         <h3 class="lead">Categories</h3>
@@ -108,7 +108,7 @@ if(isset($_POST['checkout'])){
         </div>
       </div>
 
-      <div class="col-12 col-sm-12 col-md-9 py-lg-5 py-sm-3">
+      <div class="col-12 col-sm-12 col-md-9 py-lg-3 py-sm-3">
       
         <table class="table table-bordered table-hover">
           <thead>
@@ -194,7 +194,7 @@ if(isset($_POST['checkout'])){
             //   header("Location:checkout.php");
             // }
           ?>
-          <hr>
+          
         <?php } ?>
           
         </div>

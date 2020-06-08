@@ -8,8 +8,8 @@
 </div>
       
 <div class="table-responsive">
-<table class="table table-bordered">
-  <thead>
+<table class="table table-striped ">
+  <thead class="bg-success text-white">
     <tr>
       <th>Product Id</th>
       <th>Product Image</th>

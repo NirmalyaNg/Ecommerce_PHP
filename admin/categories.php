@@ -141,8 +141,8 @@ if(isset($_POST['updateCategory'])){
             </script>";
           }
           ?>
-            <table class="table table-bordered text-center" >
-              <thead>
+            <table class="table table-striped text-center" >
+              <thead class="bg-success text-white">
                 <tr>
                   <th>Category Id</th>
                   <th>Category Name</th>

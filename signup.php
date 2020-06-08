@@ -97,43 +97,48 @@ if(isset($_POST['register'])){
 </nav>
 
 
-<section id="login-form" class="mt-5 pt-4">
+<section id="login-form" class="mt-5 pt-2">
+<h1 class="display-4 text-center bg-primary pb-2"><span class="text-white "><i class="fas fa-user "></i> REGISTER HERE</span></h1>
   <div class="container">
-  <h1 class="display-4 text-center">Register Here</h1>
-    <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-    <?php if(isset($_GET['msg']))
-    { 
-      $msg = $_GET['msg'];
-      $alert = $_GET['alert'];
-      echo "<div class='alert alert-{$alert}'>{$msg}</div>";  
-    } ?>
-      <form method="POST">
-        <div class="form-group">
-          <label for="name">Name*</label>
-          <input type="text" id="name"  required class="form-control" name="name" autocomplete="off">
-        </div>
-        <div class="form-group">
-          <label for="email">Email*</label>
-          <input type="email" id="email"  required class="form-control" name="email" autocomplete="off">
-        </div>
-        <div class="form-group">
-          <label for="password">Password*</label>
-          <input type="password" name="pass" required class="form-control" id="password" autocomplete="off">
-        </div>
-        <div class="form-group">
-          <label for="conpass">Confirm Password*</label>
-          <input type="password" name="conpass" required class="form-control" id="conpass" autocomplete="off">
-        </div>
-        <div class="form-group">
-          <label for="address">Address*</label>
-          <textarea name="address" id="address" class="form-control" style="resize:none;"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="text" name="phone" required class="form-control" id="phone" autocomplete="off">
-        </div>
-        <input type="submit" class="btn btn-danger btn-block" name="register" value="Register">
-      </form>
+  <div class="row no-gutters mt-3">
+      <div class="col-lg-6 d-none d-lg-block">
+        <img src="images/signupPage.jpg" alt="" class="img-fluid pt-4">
+      </div>
+      <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-0">
+      <?php if(isset($_GET['msg']))
+      { 
+        $msg = $_GET['msg'];
+        $alert = $_GET['alert'];
+        echo "<div class='alert alert-{$alert}'>{$msg}</div>";  
+      } ?>
+        <form method="POST">
+          <div class="form-group">
+            <label for="name">Name*</label>
+            <input type="text" id="name"  required class="form-control" name="name" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="email">Email*</label>
+            <input type="email" id="email"  required class="form-control" name="email" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="password">Password*</label>
+            <input type="password" name="pass" required class="form-control" id="password" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="conpass">Confirm Password*</label>
+            <input type="password" name="conpass" required class="form-control" id="conpass" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="address">Address*</label>
+            <textarea name="address" id="address" class="form-control" style="resize:none;"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="text" name="phone" required class="form-control" id="phone" autocomplete="off">
+          </div>
+          <input type="submit" class="btn btn-primary btn-block" name="register" value="Register">
+        </form>
+      </div>
     </div>
   </div>
 </section>

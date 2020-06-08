@@ -1,12 +1,12 @@
-<table class="table table-bordered text-center">
-  <thead class="thead-light">
+<table class="table text-center">
+  <thead class="bg-primary text-white">
     <tr>
-      <th>User Name</th>
-      <th>Profile Picture</th>
-      <th>User Email</th>
-      <th>User Address</th>
-      <th>Mobile Number</th>
-      <th>Delete User</th>
+      <th>Name</th>
+      <th>Picture</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>Mobile</th>
+      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
