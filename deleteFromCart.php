@@ -1,3 +1,4 @@
+<?php ob_start(); ?>
 <?php 
 include("includes/functions.php");
 $pid = $_GET['pid'];
@@ -28,15 +29,18 @@ if($_GET['action'] === 'reduce'){
   for($i = 0;$i < count($_SESSION['cart']);$i++){
     if($_SESSION['cart'][$i]['pid'] === $pid){
       
-      if(!($_SESSION['cart'][$i][pqty] === 1))
+      if($_SESSION['cart'][$i][pqty] != 1){
       $_SESSION['cart'][$i]['pqty'] -= 1;
 
       $query = "UPDATE cartitems SET pqty = pqty - 1  WHERE pid = '$pid'  AND user_email = '$email'";
       $reduce_query = mysqli_query($connection,$query);
       check_query($query);
       header("Location:cart.php");
+    }else{
+      header("Location:cart.php");
     }
   }
+}
 }
 
 if($_GET['action'] === 'increase'){

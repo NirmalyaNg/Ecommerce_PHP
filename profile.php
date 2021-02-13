@@ -99,7 +99,12 @@ while($row = mysqli_fetch_assoc($exec_query)){
     </div>
   </div>
 </nav>
+<?php 
+if(!$_SESSION['user_details']['ppic']){
+  $_SESSION['user_details']['ppic'] = 'dummy_profile.jpg';
+}
 
+?>
 
 <section id="profile" class="py-5">
 <h1 class="display-4 text-center bg-primary py-4 text-white"><i class="fas fa-user-circle"></i> PROFILE</h1>

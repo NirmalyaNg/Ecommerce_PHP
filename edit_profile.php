@@ -1,4 +1,6 @@
+<?php ob_start(); ?>
 <?php include("includes/functions.php");
+
 if(!isset($_SESSION['user_details']))
 {
   header("Location:login.php");
@@ -75,7 +77,6 @@ if ($uploadOk == 0) {
    $email = $_SESSION['user_details']['email'];
    $query = "UPDATE users SET ppic = '$image_name' WHERE email = '$email' ";
    $update_ppic = mysqli_query($connection,$query);
-   check_query($update_ppic);
    $_SESSION['user_details']['ppic'] = $image_name;
    header("Location:edit_profile.php?msg=Image uploaded&alert=success");
   } else {
@@ -178,7 +179,7 @@ if ($uploadOk == 0) {
              -->
             <div class="input-group mb-3 mt-3">
               <div class="custom-file">
-                <input type="file" class="custom-file-input" id="inputGroupFile02" name="ppic" class="form-control">
+                <input type="file" class="custom-file-input" id="inputGroupFile02" name="ppic" class="form-control" required>
                 <label class="custom-file-label" for="inputGroupFile02">Select Picture</label>
               </div>
             </div>

@@ -1,5 +1,5 @@
 <?php
-include("connection.php");
+include("../includes/connection.php");
 function check_query($query){
   global $connection;
   if(!$query){

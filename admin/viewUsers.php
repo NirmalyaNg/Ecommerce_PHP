@@ -1,3 +1,4 @@
+<div class="table-responsive">
 <table class="table text-center">
   <thead class="bg-primary text-white">
     <tr>
@@ -29,3 +30,4 @@
     ?>
   </tbody>
 </table>
+</div>

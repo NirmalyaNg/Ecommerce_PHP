@@ -56,7 +56,7 @@
 </nav>
 
 <!--Page Header-->
-<header id="page-header">
+<header id="page-header" class="bg-dark text-white">
   <div class="container">
     <div class="row">
       <div class="col-md-6 m-auto text-center">
@@ -142,22 +142,17 @@
     <h1>Our Staff</h1>
     <hr>
     <div class="row">
-      <div class="col-md-3 mb-2">
-        <img src="images/person1.jpg" class="img fluid rounded-circle" alt="">
-        <h4>Nirmalya Ganguly</h4>
-        <small>Front End Developer</small>
-      </div>
-      <div class="col-md-3 mb-2">
+      <div class="col-md-4 mb-2">
         <img src="images/person2.jpg" class="img fluid rounded-circle" alt="">
         <h4>Sampriti Chakraborty</h4>
         <small>Front End Developer</small>
       </div>
-      <div class="col-md-3 mb-2">
+      <div class="col-md-4 mb-2">
         <img src="images/person3.jpg" class="img fluid rounded-circle" alt="">
         <h4>Nirmalya Ganguly</h4>
         <small>Front End Developer</small>
       </div>
-      <div class="col-md-3 mb-2">
+      <div class="col-md-4 mb-2">
         <img src="images/person4.jpg" class="img fluid rounded-circle" alt="">
         <h4>Sampriti Chakraborty</h4>
         <small>Front End Developer</small>

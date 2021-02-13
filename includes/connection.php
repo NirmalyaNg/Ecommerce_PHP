@@ -4,7 +4,7 @@ session_start();
 $serverName = "localhost";
 $userName = "root";
 $password = "";
-$dbName = 'cfproject';
+$dbName = 'ecommerce';
 
 $connection = mysqli_connect($serverName,$userName,$password,$dbName);
 if(!$connection){

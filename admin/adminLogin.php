@@ -1,5 +1,6 @@
+<?php ob_start(); ?>
 <?php
-include("includes/connection.php");
+include("../includes/connection.php");
 if(isset($_POST['login'])){
   $email = mysqli_real_escape_string($connection,$_POST['email']);
   $pass = mysqli_real_escape_string($connection,$_POST['pass']);
